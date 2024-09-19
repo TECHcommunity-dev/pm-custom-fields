@@ -1,9 +1,4 @@
-{{#if isString}}
-  {{input
-    type="text"
-    value=(readonly fieldValue)
-    class="topic-custom-field-input large"
-    input=(action "onChangeField" value="target.value")
-    placeholder=(i18n 'topic_custom_field.placeholder' field=fieldName)
-  }}
-{{/if}}
+    <div class="custom-field">
+      <label for="custom-field-input">Enter Custom Value:</label>
+      {{input value=this.customFieldValue id="custom-field-input"}}
+    </div>
