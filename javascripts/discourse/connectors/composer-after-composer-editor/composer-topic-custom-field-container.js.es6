@@ -10,7 +10,7 @@ export default {
     let composerModel = this.get("model");
     if (composerModel.action == "privateMessage") {
       withPluginApi('0.8.12', api => {
-        api.modifyClass('controller:composer', {
+        api.modifyClass('model:composer', {
           actions: {
             post() {
               let customValue = this.get('model.customFieldValue');
@@ -26,5 +26,5 @@ export default {
     } 
 
     component.set("composerComponent", composerComponent);
-  }
+  },
 };
