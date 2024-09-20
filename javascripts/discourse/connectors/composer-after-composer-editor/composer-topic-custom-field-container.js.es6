@@ -26,5 +26,5 @@ export default {
     } 
 
     component.set("composerComponent", composerComponent);
-  },
+  }
 };
