@@ -10,18 +10,32 @@ export default {
     let composerModel = this.get("model");
     if (composerModel.action == "privateMessage") {
       withPluginApi('0.8.12', api => {
-        api.modifyClass('model:composer', {
-          actions: {
-            post() {
-              let customValue = this.get('model.customFieldValue');
-              if (customValue) {
-                let currentBody = this.get('model.reply') || '';
-                this.set('model.reply', currentBody + `\n\nCustom Field: ${customValue}`);
-              }
-              this._super();
-            }
-          }
-        });
+        api.modifyClass('controller:composer', {
+			pluginId: 'custom-composer',
+
+			init() {
+			  this._super(...arguments);
+			  this.set('customFieldValue', ''); // Initialize the custom field value
+			},
+
+			actions: {
+			  createTopic() {
+				let customFieldValue = this.get('customFieldValue');
+				
+				// Get current post body and append custom text
+				let postBody = this.get('model.raw');
+				if (customFieldValue) {
+				  postBody = `${postBody}\n\nCustom Field Value: ${customFieldValue}`;
+				}
+
+				// Update post body with custom text
+				this.set('model.raw', postBody);
+
+				// Proceed with the default createTopic action
+				this._super(...arguments);
+			  }
+			}
+		});
       }
     } 
 
