@@ -1,5 +1,7 @@
 import Composer from 'discourse/models/composer';
 import { withPluginApi } from 'discourse/lib/plugin-api';
+import { getOwner } from "@ember/application";
+import { set } from "@ember/object";
 
 export default {
    setupComponent(args, component) {
