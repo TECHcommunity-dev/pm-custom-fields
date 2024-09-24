@@ -14,7 +14,6 @@ export default {
       let currentBody = this.get('model.reply') || '';
       this.set('model.reply', currentBody + `\n\nCustom Field:`);
 
-    }
     component.set("composerComponent", composerComponent);
   },
 };
