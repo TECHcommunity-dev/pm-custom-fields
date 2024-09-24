@@ -9,7 +9,6 @@ import { set } from "@ember/object";
 export default {
   setupComponent(args, component) {
     const composerComponent = getOwner(this).lookup("service:composer");
-      let composerModel = this.get("model");
 
       let currentBody = this.get('model.reply') || '';
       this.set('model.reply', currentBody + `\n\nCustom Field:`);
