@@ -2,25 +2,19 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 import EmberObject, { action } from "@ember/object";
 import { isEmpty } from "@ember/utils";
 
+function initializeIntelligentTagger(api) {
+  const ComposerController = api.container.lookupFactory("controller:composer");
+  ComposerController.reopen({
+    editPostItem: function () {
+      console.log(this.get('model.title'));
+      console.log(this.get('model.reply'));
+    }.observes('model.reply')
+  });
+}
+
 export default {
-	name: "pm-custom-fields",
-
-	initialize() {
-
-		withPluginApi("0.8", (api) => {
-			api.modifyClass('controller:topic', {
-				pluginId: 'pm-custom-fields',
-				actions: {
-				      post() {
-				        let customValue = this.get('model.customFieldValue');
-				        
-				          let currentBody = this.get('model.postStream') || '';
-				          this.set('model.postStream', currentBody + `\n\nCustom Field: ${customValue}`);
-				        
-				        this._super();
-				      }
-				    }
-			});
-		});
-	}
+  name: "composer-topic-custom-field-container",
+  initialize() {
+    withPluginApi('0.0.1', initializeIntelligentTagger);
+  }
 };
