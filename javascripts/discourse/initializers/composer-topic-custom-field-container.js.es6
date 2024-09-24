@@ -8,14 +8,14 @@ export default {
 	initialize() {
 
 		withPluginApi("0.8", (api) => {
-			api.modifyClass('controller:composer', {
+			api.modifyClass('controller:topic', {
 				pluginId: 'pm-custom-fields',
 				actions: {
 				      post() {
 				        let customValue = this.get('model.customFieldValue');
 				        
-				          let currentBody = this.get('model.reply') || '';
-				          this.set('model.reply', currentBody + `\n\nCustom Field: ${customValue}`);
+				          let currentBody = this.get('model.postStream') || '';
+				          this.set('model.postStream', currentBody + `\n\nCustom Field: ${customValue}`);
 				        
 				        this._super();
 				      }
