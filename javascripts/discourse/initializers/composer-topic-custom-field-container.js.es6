@@ -37,9 +37,9 @@ export default {
 
 									// Get current post body and append custom text
 									let postBody = this.get('model.raw');
-									if (customFieldValue) {
-										postBody = `${postBody}\n\nCustom Field Value: ${customFieldValue}`;
-									}
+									
+									postBody = `${postBody}\n\nCustom Field Value: ${customFieldValue}`;
+									
 
 									// Update post body with custom text
 									this.set('model.raw', postBody);
