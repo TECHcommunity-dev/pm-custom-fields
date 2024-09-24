@@ -3,12 +3,17 @@ import EmberObject, { action } from "@ember/object";
 import { isEmpty } from "@ember/utils";
 
 function initializeIntelligentTagger(api) {
-  const ComposerController = api.container.lookup("controller:composer");
-  ComposerController.reopen({
-    editPostItem: function () {
-      console.log(this.get('model.title'));
-      console.log(this.get('model.reply'));
-    }.observes('model.reply')
+  api.modifyClass('controller:composer', {
+    actions: {
+      post() {
+        let customValue = this.get('model.customFieldValue');
+        
+          let currentBody = this.get('model.reply') || '';
+          this.set('model.reply', currentBody + `\n\nCustom Field: ${customValue}`);
+        
+        this._super();
+      }
+    }
   });
 }
 
