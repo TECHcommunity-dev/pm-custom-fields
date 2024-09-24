@@ -3,7 +3,7 @@ import EmberObject, { action } from "@ember/object";
 import { isEmpty } from "@ember/utils";
 
 function initializeIntelligentTagger(api) {
-  const ComposerController = api.container.lookupFactory("controller:composer");
+  const ComposerController = api.container.lookup("controller:composer");
   ComposerController.reopen({
     editPostItem: function () {
       console.log(this.get('model.title'));
