@@ -7,7 +7,11 @@ export default {
     
     let composerModel = this.get("model");
 
-    if (composerModel.action == "privateMessage" || (composerModel.privateMessage == "true" && composerModel.action == "reply")) {
+    if (composerModel.privateMessage == "true") {
+      set(composerComponent, "isPrivateMessage", true)
+    } 
+
+    if (composerModel.action == "privateMessage") {
       set(composerComponent, "isPrivateMessage", true)
     } 
     else {          
