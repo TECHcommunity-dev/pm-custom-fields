@@ -1,0 +1,15 @@
+<script type="text/discourse-plugin" version="0.8">
+  api.modifyClass('model:composer', {
+    pluginId: 'custom-composer',
+    
+    save() {
+      const customFieldValue2 = document.getElementById('custom-field-input').value;
+      this.set('customFieldValue', customFieldValue2);
+      this.set('reply', this.get('reply') + `\n\nCustom Field: ${this.get('customFieldValue')}`);
+      
+      console.log(customFieldValue2);
+      this._super(...arguments); // Call the original save method
+    }
+  });
+</script>
+
