@@ -6,7 +6,7 @@ export default {
     const composerComponent = getOwner(this).lookup("service:composer");
     
     let composerModel = this.get("model");
-    if (composerModel.action == "privateMessage" || composerModel.action == "reply") {
+    if (composerModel.action == "privateMessage") {
       set(composerComponent, "isPrivateMessage", true)
 
       if (composerModel.action == "reply") {
