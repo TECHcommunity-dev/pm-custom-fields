@@ -10,7 +10,7 @@ export default {
     if (composerModel.action == "privateMessage") {
       set(composerComponent, "isPrivateMessage", true)
     } 
-    else if (composerModel.action == "reply" && composerModel.creatingPrivateMessage.topic == "true") {
+    else if (composerModel.action == "reply" && composerModel.PrivateMessage == "false") {
       set(composerComponent, "isPrivateMessage", true)
     }
     else {          
