@@ -2,8 +2,9 @@
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
     save() { 
-      const customFieldValue = document.getElementById('custom-field-input').value;
-      this.set('reply', this.get('reply') + `\n\nProduct Name: ` + customFieldValue);
+      const customFieldValue2 = document.getElementById('custom-field-input').value;
+      this.set('customFieldValue', customFieldValue2);
+      this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
       return this._super(...arguments); // Call the original save method
     }
   });
