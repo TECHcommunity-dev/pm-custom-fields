@@ -2,6 +2,7 @@
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
     save() { 
+    if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
       const errorMessage = document.getElementsByClassName('error-message')[0];
       const customInput = document.getElementById('custom-field-input');
@@ -20,6 +21,7 @@
       this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
       return this._super(...arguments); // Call the original save method
     }
+  }
   });
 </script>
 
