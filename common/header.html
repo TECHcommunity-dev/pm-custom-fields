@@ -21,6 +21,7 @@
       this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
       return this._super(...arguments); // Call the original save method
     }
+    else {return this._super(...arguments); // Call the original save method}
   }
   });
 </script>
