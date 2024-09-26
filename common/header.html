@@ -4,7 +4,7 @@
     save() { 
       const customFieldValue2 = document.getElementById('custom-field-input').value;
       const errorMessage = document.getElementsByClassName('error-message');
-      const customFieldValue = customInput.value.trim();
+      const customInput = document.getElementById('custom-field-input');
 
       if (!customFieldValue2) {
           // Prevent submission and show error message
