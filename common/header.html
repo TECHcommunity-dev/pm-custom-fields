@@ -3,17 +3,17 @@
     pluginId: 'custom-composer',
     save() { 
       const customFieldValue2 = document.getElementById('custom-field-input').value;
-      const errorMessage = document.getElementsByClassName('error-message');
+      const errorMessage = document.getElementsByClassName('error-message')[0];
       const customInput = document.getElementById('custom-field-input');
 
       if (!customFieldValue2) {
           // Prevent submission and show error message
-          errorMessage.style.display = block;
+          errorMessage.style.display = 'block';
           customInput.focus();
           return;
       } else {
           // Hide error message
-          errorMessage.style.display = none;
+          errorMessage.style.display = 'none';
           this.set('customFieldValue', customFieldValue2);
           this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
           return this._super(...arguments); // Call the original save method
