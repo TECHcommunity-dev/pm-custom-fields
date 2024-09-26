@@ -10,6 +10,7 @@
           // Prevent submission and show error message
           errorMessage.style.display = 'block';
           customInput.focus();
+          return this._super(...arguments); // Call the original save method
       } else {
           // Hide error message
           errorMessage.style.display = 'none';
