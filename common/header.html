@@ -8,18 +8,18 @@
       const errorMessage = document.getElementsByClassName('error-message')[0];
       const customInput = document.getElementById('custom-field-input');
 
-      if (!customFieldValue2)) {
-          // Prevent submission and show error message
-          errorMessage.style.display = 'block';
-          customInput.focus();
-          return;
-      } else {
-          // Hide error message
-          errorMessage.style.display = 'none';
-          this.set('customFieldValue', customFieldValue2);
-          this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
-          this._super(...arguments).then(resolve).catch(reject); // Call the original save method
-      }
+        if (!customFieldValue2) {
+            // Prevent submission and show error message
+            errorMessage.style.display = 'block';
+            customInput.focus();
+            return;
+        } else {
+            // Hide error message
+            errorMessage.style.display = 'none';
+            this.set('customFieldValue', customFieldValue2);
+            this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
+            this._super(...arguments).then(resolve).catch(reject); // Call the original save method
+        }
     }
     else {
       this._super(...arguments); // Call the original save method
