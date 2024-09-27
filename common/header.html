@@ -2,7 +2,7 @@
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
     save() { 
-    if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
+    return new Promise((resolve, reject) => {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
       const errorMessage = document.getElementsByClassName('error-message')[0];
       const customInput = document.getElementById('custom-field-input');
@@ -15,15 +15,11 @@
       } else {
           // Hide error message
           errorMessage.style.display = 'none';
-      }  
-
-      this.set('customFieldValue', customFieldValue2);
-      this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
-      return this._super(...arguments); // Call the original save method
-    }
-    else {
-      return this._super(...arguments); // Call the original save method
-    }
+          this.set('customFieldValue', customFieldValue2);
+          this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
+          this._super(...arguments).then(resolve).catch(reject); // Call the original save method
+      }        
+    });
   }
   });
 </script>
