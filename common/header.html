@@ -7,7 +7,7 @@
       const errorMessage = document.getElementsByClassName('error-message')[0];
       const customInput = document.getElementById('custom-field-input');
 
-      if (!customFieldValue2) {
+      if (!customFieldValue2 && (this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
           // Prevent submission and show error message
           errorMessage.style.display = 'block';
           customInput.focus();
