@@ -1,8 +1,9 @@
 <script type="text/discourse-plugin" version="0.8">
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
-    save() { 
-    if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
+    save() {
+      return new Promise((resolve, reject) => {
+            if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
       const errorMessage = document.getElementsByClassName('error-message')[0];
       const customInput = document.getElementById('custom-field-input');
@@ -21,9 +22,11 @@
       this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
       this._super(...arguments); // Call the original save method
     }
-    else {
-      return this._super(...arguments); // Call the original save method
+      }).catch(error => {
+        console.error(error.message);
+        // Ensuring rejection is handled properly
+        return new Promise((res, rej) => rej(error));
+      });
     }
-  }
-  });
+ });
 </script>
