@@ -11,7 +11,7 @@
           // Prevent submission and show error message
           errorMessage.style.display = 'block';
           customInput.focus();
-          return Promise.reject(new Error('Custom field is required.'));
+          return Promise.reject();
       } else {
           // Hide error message
           errorMessage.style.display = 'none';
