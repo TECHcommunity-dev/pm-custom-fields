@@ -23,6 +23,7 @@
           // Hide error message
           errorMessage.style.display = 'none';
           this.set('customFieldValue', customFieldValue2);
+          document.getElementById('custom-field-input').value = customFieldValue;
           this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
           return this._super(...arguments); // Call the original save method
       }  
