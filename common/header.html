@@ -3,7 +3,7 @@
     pluginId: 'custom-composer',
     customFieldValue: null,
     open() {
-      if(customFieldValue) {
+      if(this.get('customFieldValue')) {
         document.getElementById('custom-field-input').value = this.get('customFieldValue');
       }
     },
