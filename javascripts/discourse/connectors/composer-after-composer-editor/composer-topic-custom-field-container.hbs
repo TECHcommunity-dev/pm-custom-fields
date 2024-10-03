@@ -2,7 +2,7 @@
     <div class="custom-field">
         <label for="custom-field-input">Product Name:</label>
         {{#if this.composerComponent.customFieldValue}}
-        <input value=this.composerComponent.customFieldValue id="custom-field-input" placeholder="Type here product name…">
+        <input value={{this.composerComponent.customFieldValue}} id="custom-field-input" placeholder="Type here product name…">
         {{/if}}
         <input class="testt" id="custom-field-input" placeholder="Type here product name…">
         <span class="error-message" style="display: none; color: red;">This field is required.</span>
