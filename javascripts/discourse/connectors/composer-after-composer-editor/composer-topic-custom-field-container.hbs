@@ -1,7 +1,12 @@
 {{#if this.composerComponent.isPrivateMessage}}
     <div class="custom-field">
         <label for="custom-field-input">Product Name:</label>
-        <input class="{{if this.composerComponent.customFieldValue 'with-custom-field'}}" id="custom-field-input" placeholder="Type here product name…">
+        {{#if this.composerComponent.customFieldValue}}
+        <input value=this.composerComponent.customFieldValue id="custom-field-input" placeholder="Type here product name…">
+        {{/if}}
+        {{#else}}
+        <input id="custom-field-input" placeholder="Type here product name…">
+        {{/else}}
         <span class="error-message" style="display: none; color: red;">This field is required.</span>
     </div>
 {{/if}}
