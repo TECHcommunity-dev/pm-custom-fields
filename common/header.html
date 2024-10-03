@@ -5,7 +5,7 @@
       this._super(...arguments);
       this.set('customFieldValue', ''); // Initialize the custom field value
     },
-    open {
+    open() {
     if(this.get('customFieldValue')) {
       const customField = this.get('customFieldValue');
       const customInput = document.getElementById('custom-field-input');
