@@ -8,8 +8,8 @@
     open() {
     if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customField = this.get('customFieldValue');
-      const customFieldValue2 = document.getElementById('custom-field-input')
-        if() {
+      const customFieldValue2 = document.getElementById('custom-field-input');
+        if(customField) {
           customFieldValue2.value = customField;
         }
         return this._super(...arguments); // Call the original open method
