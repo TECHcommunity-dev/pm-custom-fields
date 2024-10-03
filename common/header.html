@@ -1,7 +1,22 @@
 <script type="text/discourse-plugin" version="0.8">
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
-    customFieldValue: null,
+    init() {
+      this._super(...arguments);
+      this.set('customFieldValue', ''); // Initialize the custom field value
+    },
+    open() {
+    if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
+      const customField = this.get('customFieldValue');
+      const customFieldValue2 = document.getElementById('custom-field-input')
+        if() {
+          customFieldValue2.value = customField;
+        }
+        return this._super(...arguments); // Call the original open method
+    } else {
+      return this._super(...arguments); // Call the original open method
+    }
+    },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
