@@ -2,13 +2,6 @@
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
     customFieldValue: null,
-    open() {
-    if(this.get('customFieldValue')) {
-      const customField = this.get('customFieldValue');
-      const customInput = document.getElementById('custom-field-input');
-      customInput.value = customField;
-    }
-    },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
