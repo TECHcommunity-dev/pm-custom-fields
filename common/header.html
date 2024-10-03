@@ -1,7 +1,7 @@
 <script type="text/discourse-plugin" version="0.8">
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
-    customFieldValue: document.getElementById('custom-field-input').value,
+    customFieldValue: this.customFieldValue,
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
