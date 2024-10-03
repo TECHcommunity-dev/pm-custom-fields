@@ -1,7 +1,7 @@
 <script type="text/discourse-plugin" version="0.8">
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
-    customFieldValue: null,
+    customFieldValue: document.getElementById('custom-field-input').value,
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
@@ -9,19 +9,17 @@
       const errorMessage = document.getElementsByClassName('error-message')[0];
       const customInput = document.getElementById('custom-field-input');
 
-      if (!customFieldValue2 && !customFieldValue) {
+  if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
+      const customFieldValue2 = document.getElementById('custom-field-input').value;
+      const errorMessage = document.getElementsByClassName('error-message')[0];
+      const customInput = document.getElementById('custom-field-input');
+
+      if (!customFieldValue2) {
           // Prevent submission and show error message
           errorMessage.style.display = 'block';
           customInput.focus();
           return Promise.reject();
-      } 
-      else if (customFieldValue) {
-        errorMessage.style.display = 'none';
-        document.getElementById('custom-field-input').value = customFieldValue;
-        this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
-        return this._super(...arguments); // Call the original save method
-      }
-      else {
+      } else {
           // Hide error message
           errorMessage.style.display = 'none';
           this.set('customFieldValue', customFieldValue2);
