@@ -9,6 +9,7 @@
     }
     } else {
       return this._super(...arguments); // Call the original open method
+    }
     },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
