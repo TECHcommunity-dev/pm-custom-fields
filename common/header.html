@@ -6,7 +6,6 @@
     if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
         document.getElementById('custom-field-input').value = this.get('customFieldValue');
       return this._super(...arguments); // Call the original open method
-    }
     } else {
       return this._super(...arguments); // Call the original open method
     }
