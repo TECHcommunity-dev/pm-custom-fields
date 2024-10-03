@@ -1,10 +1,7 @@
 <script type="text/discourse-plugin" version="0.8">
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
-    init() {
-      this._super(...arguments);
-      this.set('customFieldValue', ''); // Initialize the custom field value
-    },
+    customFieldValue: null,
     open() {
     if(this.get('customFieldValue')) {
       const customField = this.get('customFieldValue');
