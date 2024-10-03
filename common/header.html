@@ -6,7 +6,7 @@
       if(customFieldValue) {
         document.getElementById('custom-field-input').value = this.get('customFieldValue');
       }
-    }
+    },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
