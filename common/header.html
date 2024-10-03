@@ -1,13 +1,15 @@
 <script type="text/discourse-plugin" version="0.8">
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
-    customFieldValue: null,
-        open() {
-    if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
-        document.getElementById('custom-field-input').value = this.get('customFieldValue');
-      return this._super(...arguments); // Call the original open method
-    } else {
-      return this._super(...arguments); // Call the original open method
+    init() {
+      this._super(...arguments);
+      this.set('customFieldValue', ''); // Initialize the custom field value
+    },
+    open {
+    if(this.get('customFieldValue')) {
+      const customField = this.get('customFieldValue');
+      const customInput = document.getElementById('custom-field-input');
+      customInput.value = customField;
     }
     },
     save() {
