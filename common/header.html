@@ -2,6 +2,11 @@
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
     customFieldValue: null,
+    open() {
+      if(customFieldValue) {
+        document.getElementById('custom-field-input').value = this.get('customFieldValue');
+      }
+    }
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
@@ -23,7 +28,6 @@
           // Hide error message
           errorMessage.style.display = 'none';
           this.set('customFieldValue', customFieldValue2);
-          document.getElementById('custom-field-input').value = this.get('customFieldValue');
           this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
           return this._super(...arguments); // Call the original save method
       }  
