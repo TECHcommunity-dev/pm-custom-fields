@@ -4,7 +4,7 @@
     customFieldValue: null,
         open() {
     if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
-        document.getElementById('custom-field-input').value = this.composerComponent.get('customFieldValue');
+        document.getElementById('custom-field-input').value = this.get('customFieldValue');
       return this._super(...arguments); // Call the original open method
     } else {
       return this._super(...arguments); // Call the original open method
@@ -13,7 +13,7 @@
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
-      this.composerComponent.set('customFieldValue', customFieldValue2);
+      this.set('customFieldValue', customFieldValue2);
       const errorMessage = document.getElementsByClassName('error-message')[0];
       const customInput = document.getElementById('custom-field-input');
 
@@ -25,8 +25,8 @@
       } else {
           // Hide error message
           errorMessage.style.display = 'none';
-          this.composerComponent.set('customFieldValue', customFieldValue2);
-          this.composerComponent.set('reply', this.composerComponent.get('reply') + `\n\nProduct Name: ${this.composerComponent.get('customFieldValue')}`);
+          this.set('customFieldValue', customFieldValue2);
+          this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
           return this._super(...arguments); // Call the original save method
       }  
   }
