@@ -2,7 +2,7 @@
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
     actions: {
-      if(composerComponent.get('composeState') == "open")(
+      if(composerComponent.get('composeState') == "open"){
         document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
       }
     },
