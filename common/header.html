@@ -5,18 +5,23 @@
       this._super(...arguments);
       this.set('customFieldValue', ''); // Initialize the custom field value
     },
-    open() {
-    if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
-      const customField = this.get('customFieldValue');
-      const customFieldValue2 = document.getElementById('custom-field-input');
-        if(customField) {
-          customFieldValue2.value = customField;
+    actions: {
+      updateCustomFieldValue() {
+        // Get the custom field input element
+        const customInput = document.getElementById('custom-field-input');
+
+        if (customInput) {
+          // Update the input field's value from the model's customFieldValue property
+          if (customInput.value !== this.customFieldValue) {
+            customInput.value = this.customFieldValue;
+          }
         }
-        return this._super(...arguments); // Call the original open method
-    } else {
-      return this._super(...arguments); // Call the original open method
-    }
+      }
     },
+
+    customFieldValueObserver: Ember.observer('customFieldValue', function() {
+      Ember.run.scheduleOnce('afterRender', this, this.actions.updateCustomFieldValue);
+    }),
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
@@ -42,4 +47,11 @@
   }
     }
  });
+
+  api.onPageChange(() => {
+    const composerController = Discourse.__container__.lookup('controller:composer');
+    if (composerController && composerController.send) {
+      composerController.send('updateCustomFieldValue');
+    }
+  });
 </script>
