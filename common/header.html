@@ -1,10 +1,8 @@
 <script type="text/discourse-plugin" version="0.8">  
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
-    actions: {
-      if(document.getElementById('reply-control').classList.contains('open')){
+    isOpen() {
         document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
-      }
     },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
