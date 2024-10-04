@@ -1,6 +1,11 @@
 <script type="text/discourse-plugin" version="0.8">  
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
+    actions: {
+      updateCustomFieldValue() {
+        document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
+      }
+    },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
@@ -27,9 +32,4 @@
   }
     }
  });
-  api.onPageChange(() => {
-    if(this.action == "reply" && this.get('privateMessage') == true && this.get('composeState') == 'open') {
-      document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
-    }
-  });
 </script>
