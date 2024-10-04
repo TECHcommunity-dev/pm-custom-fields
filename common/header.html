@@ -3,7 +3,7 @@
     pluginId: 'custom-composer',
     open() {
     if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
-        document.getElementById('custom-field-input').value = document.querySelectorAll('div[data-wrap="^product-name"]').innerHTML;
+        document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
       return this._super(...arguments); // Call the original open method
     } else {
       return this._super(...arguments); // Call the original open method
