@@ -1,6 +1,14 @@
 <script type="text/discourse-plugin" version="0.8">  
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
+    open() {
+    if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
+        document.getElementById('custom-field-input').value = document.querySelectorAll('div[data-wrap="^product-name"]').value;
+      return this._super(...arguments); // Call the original open method
+    } else {
+      return this._super(...arguments); // Call the original open method
+    }
+    },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
