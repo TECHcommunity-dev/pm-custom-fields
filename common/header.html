@@ -1,12 +1,6 @@
 <script type="text/discourse-plugin" version="0.8">  
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
-     open() {
-       this._super(...arguments);
-        if(document.querySelector('div[data-wrap="product-name"]').innerHTML) {
-          document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
-        } 
-      },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
