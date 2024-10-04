@@ -16,8 +16,9 @@
       } else {
           // Hide error message
           errorMessage.style.display = 'none';
+          const customHTML = '<p class="product-name">Product Name: ${this.get('customFieldValue')}</p>'
           this.set('customFieldValue', customFieldValue2);
-          this.set('reply', this.get('reply') + `<p class="product-name">Product Name: ${this.get('customFieldValue')}</p>`);
+          this.set('reply', this.get('reply') + customHTML);
           return this._super(...arguments); // Call the original save method
       }  
   }
