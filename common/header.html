@@ -1,4 +1,7 @@
 <script type="text/discourse-plugin" version="0.8">
+  const { default: EmberObject, set } = require("@ember/object");
+  const { A } = require('@ember/array');
+  
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
     init() {
