@@ -6,7 +6,7 @@
         api.onAppEvent('composer:opened', this.executeCustomCode.bind(this));
     },
      executeCustomCode() {
-      document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
+      document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]:last-of-type').innerHTML;
     },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
