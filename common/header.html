@@ -28,7 +28,7 @@
     }
  });
   api.onPageChange(() => {
-    if((this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) && this.get('composeState') == "open") {
+    if(this.action == "reply" && this.get('privateMessage') == true && this.get('composeState') == 'open') {
       document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
     }
   });
