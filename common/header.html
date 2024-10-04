@@ -1,10 +1,12 @@
 <script type="text/discourse-plugin" version="0.8">  
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
-    isOpen() {
-      if(this.get('composeState') == "open") {
-        document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
-      }
+     executeCustomCode() {
+      document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
+    },
+    open() {
+        this._super(...arguments);
+        this.executeCustomCode();
     },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
