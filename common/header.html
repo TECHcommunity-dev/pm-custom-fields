@@ -21,10 +21,6 @@
         }
       }
     },
-
-    customFieldValueObserver: Ember.observer('customFieldValue', function() {
-      Ember.run.scheduleOnce('afterRender', this, this.actions.updateCustomFieldValue);
-    }),
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
