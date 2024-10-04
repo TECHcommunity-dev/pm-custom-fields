@@ -3,7 +3,7 @@
     pluginId: 'custom-composer',
     open() {
         this._super(...arguments);
-        Ember.run.scheduleOnce('afterRender', this, this.executeCustomCode);
+        api.onAppEvent('composer:opened', this.executeCustomCode.bind(this));
     },
      executeCustomCode() {
       document.getElementById('custom-field-input').value = document.querySelector('div[data-wrap="product-name"]').innerHTML;
