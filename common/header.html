@@ -1,26 +1,6 @@
-<script type="text/discourse-plugin" version="0.8">
-  const { default: EmberObject, set } = require("@ember/object");
-  const { A } = require('@ember/array');
-  
+<script type="text/discourse-plugin" version="0.8">  
   api.modifyClass('model:composer', {
     pluginId: 'custom-composer',
-    init() {
-      this._super(...arguments);
-      this.set('customFieldValue', ''); // Initialize the custom field value
-    },
-    actions: {
-      updateCustomFieldValue() {
-        // Get the custom field input element
-        const customInput = document.getElementById('custom-field-input');
-
-        if (customInput) {
-          // Update the input field's value from the model's customFieldValue property
-          if (customInput.value !== this.customFieldValue) {
-            customInput.value = this.customFieldValue;
-          }
-        }
-      }
-    },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
@@ -37,7 +17,7 @@
           // Hide error message
           errorMessage.style.display = 'none';
           this.set('customFieldValue', customFieldValue2);
-          this.set('reply', this.get('reply') + `\n\nProduct Name: ${this.get('customFieldValue')}`);
+          this.set('reply', this.get('reply') + `<p class="product-name">Product Name: ${this.get('customFieldValue')}</p>`);
           return this._super(...arguments); // Call the original save method
       }  
   }
@@ -46,11 +26,4 @@
   }
     }
  });
-
-  api.onPageChange(() => {
-    const composerController = Discourse.__container__.lookup('controller:composer');
-    if (composerController && composerController.send) {
-      composerController.send('updateCustomFieldValue');
-    }
-  });
 </script>
