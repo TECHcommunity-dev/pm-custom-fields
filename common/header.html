@@ -2,7 +2,7 @@
     api.modifyClass('model:composer', {
         pluginId: 'custom-composer',
         open() {
-            this._super(...arguments);
+            this._super(...arguments); // Call the original open method
             api.onAppEvent('composer:opened', this.executeCustomCode.bind(this));
         },
         executeCustomCode() {
@@ -10,36 +10,42 @@
                 var dataProductName = document.querySelectorAll('div[data-wrap="product-name"]');
                 document.getElementById('product-name-custom-field-input').value = document.querySelectorAll('div[data-wrap="product-name"]')[dataProductName.length - 1].innerHTML;
             }
-
+            /*
             if (document.querySelectorAll('div[data-wrap="product-version"]')[0]) {
                 var dataProductVersion = document.querySelectorAll('div[data-wrap="product-version"]');
                 document.getElementById('product-version-custom-field-input').value = document.querySelectorAll('div[data-wrap="product-version"]')[dataProductVersion.length - 1].innerHTML;
             }
+            */
         },
         save() {
             if (this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
                 const productNameCustomFieldValue = document.getElementById('product-name-custom-field-input').value;
-                const productVersionCustomFieldValue = document.getElementById('product-version-custom-field-input').value;
+             // const productVersionCustomFieldValue = document.getElementById('product-version-custom-field-input').value;
                 const errorMessage = document.getElementsByClassName('error-message')[0];
                 const productNameCustomFieldInput= document.getElementById('product-name-custom-field-input');
-                const productVersionCustomFieldInput= document.getElementById('product-version-custom-field-input');
+             // const productVersionCustomFieldInput= document.getElementById('product-version-custom-field-input');
 
                 if (!productNameCustomFieldValue) {
-                    // Prevent submission and show error message
+                    // If there is no product name typed, prevent submission and show an error message
                     errorMessage.style.display = 'block';
                     productNameCustomFieldInput.focus();
                     return Promise.reject();
-                } else if (!productVersionCustomFieldValue) {
-                    // Prevent submission and show error message
+                } 
+                /*
+                else if (!productVersionCustomFieldValue) {
+                    // If there is no product version typed, prevent submission and show an error message
                     errorMessage.style.display = 'block';
                     productVersionCustomFieldInput.focus();
                     return Promise.reject();
-                } else {
-                    // Hide error message
+                } 
+                */
+                else {
+                    // Hide the error message
                     errorMessage.style.display = 'none';
                     const customHTMLProductName = "<div data-wrap=\"product-name\">" + productNameCustomFieldValue + "</div>";
-                    const customHTMLProductVersion = "<div data-wrap=\"product-version\">" + productVersionCustomFieldValue + "</div>";
-                    this.set('reply', this.get('reply') + `\n\nProduct Name: ` + customHTMLProductName + `\n\nProduct Version: ` + customHTMLProductVersion);
+                    this.set('reply', this.get('reply') + `\n\nProduct Name: ` + customHTMLProductName);
+                 // const customHTMLProductVersion = "<div data-wrap=\"product-version\">" + productVersionCustomFieldValue + "</div>";
+                 // this.set('reply', this.get('reply') + `\n\nProduct Name: ` + customHTMLProductName + `\n\nProduct Version: ` + customHTMLProductVersion);
                     return this._super(...arguments); // Call the original save method
                 }
             } else {
