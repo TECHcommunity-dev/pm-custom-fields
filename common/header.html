@@ -1,19 +1,17 @@
 <script type="text/discourse-plugin" version="0.8">  
-  api.modifyClass('model:composer', {
-    pluginId: 'custom-composer',
-    open() {
-        this._super(...arguments);
-        
-        api.onAppEvent('composer:opened', () => {
-          executeCustomCode();
-        });
-    },
-     executeCustomCode() {
-      if(document.querySelectorAll('div[data-wrap="product-name"]')[0]) {
+  api.onAppEvent('composer:opened', () => {
+    customLogic();
+  });
+
+  const customLogic = () => {
+    if(document.querySelectorAll('div[data-wrap="product-name"]')[0]) {
         var dataWrapDivs = document.querySelectorAll('div[data-wrap="product-name"]');
         document.getElementById('custom-field-input').value = document.querySelectorAll('div[data-wrap="product-name"]')[dataWrapDivs.length - 1].innerHTML;
       }
-    },
+  };  
+  
+  api.modifyClass('model:composer', {
+    pluginId: 'custom-composer',
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
       const customFieldValue2 = document.getElementById('custom-field-input').value;
