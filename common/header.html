@@ -6,8 +6,10 @@
         api.onAppEvent('composer:opened', this.executeCustomCode.bind(this));
     },
      executeCustomCode() {
-      var dataWrapDivs = document.querySelectorAll('div[data-wrap="product-name"]');
-      document.getElementById('custom-field-input').value = document.querySelectorAll('div[data-wrap="product-name"]')[dataWrapDivs.length - 1].innerHTML;
+      if(document.querySelectorAll('div[data-wrap="product-name"]')) {
+        var dataWrapDivs = document.querySelectorAll('div[data-wrap="product-name"]');
+        document.getElementById('custom-field-input').value = document.querySelectorAll('div[data-wrap="product-name"]')[dataWrapDivs.length - 1].innerHTML;
+      }
     },
     save() {
   if(this.action == "privateMessage" || (this.action == "reply" && this.get('privateMessage') == true)) {
