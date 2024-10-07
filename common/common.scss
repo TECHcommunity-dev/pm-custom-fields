@@ -1,3 +1,8 @@
 .product-custom-fields {
   margin: 10px 0px;
 }
+
+.p:has(+ div[data-wrap="product-name"]),
+div[data-wrap="product-name"] {
+  display: inline;
+}
