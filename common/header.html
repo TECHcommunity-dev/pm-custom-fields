@@ -3,7 +3,10 @@
     pluginId: 'custom-composer',
     open() {
         this._super(...arguments);
-        api.onAppEvent('composer:opened', this.executeCustomCode.bind(this));
+        
+        api.onAppEvent('composer:opened', () => {
+          executeCustomCode();
+        });
     },
      executeCustomCode() {
       if(document.querySelectorAll('div[data-wrap="product-name"]')[0]) {
