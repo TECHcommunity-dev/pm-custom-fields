@@ -6,7 +6,7 @@
         api.onAppEvent('composer:opened', this.executeCustomCode.bind(this));
     },
      executeCustomCode() {
-      if(document.querySelectorAll('div[data-wrap="product-name"]')) {
+      if(document.querySelectorAll('div[data-wrap="product-name"]')[0]) {
         var dataWrapDivs = document.querySelectorAll('div[data-wrap="product-name"]');
         document.getElementById('custom-field-input').value = document.querySelectorAll('div[data-wrap="product-name"]')[dataWrapDivs.length - 1].innerHTML;
       }
