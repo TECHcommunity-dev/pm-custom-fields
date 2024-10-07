@@ -4,7 +4,7 @@
         open() {
             this._super(...arguments); // Call the original open method
             api.onAppEvent('composer:opened', this.executeCustomCode.bind(this));
-            api.onAppEvent('post-stream:refresh', this.executeCustomCode.bind(this));
+            api.onAppEvent('page:changed', this.executeCustomCode.bind(this));
         },
         executeCustomCode() {
             if (document.querySelectorAll('div[data-wrap="product-name"]')[0]) {
